@@ -3,8 +3,7 @@
 * * This source code is licensed under the GNU General Public License v3.0 
 * found in the LICENSE file in the root directory of this source tree.
 */
-
-import { pipeline, env } from '@xenova/transformers';
+import { pipeline, env, PipelineType } from '@xenova/transformers';
 import { WorkerMessageRequest, WorkerMessageResponse } from '../types';
 
 // Skip local check to enforce CDN usage

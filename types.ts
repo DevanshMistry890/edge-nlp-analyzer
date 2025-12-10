@@ -1,4 +1,4 @@
-
+import { PipelineType } from '@xenova/transformers';
 export interface AIResult {
   data: any; // Flexible to accommodate different pipeline outputs
   inferenceTime: number; // in milliseconds
@@ -26,7 +26,7 @@ export type WorkerMessageRequest = {
   taskId: TaskType;
   text: string;
   modelId?: string;
-  pipelineTask?: string;
+  pipelineTask?: PipelineType;
   quantized?: boolean;
 };
 
