@@ -1,0 +1,89 @@
+/* src/styles/MeshGradient.css */
+
+/* 1. Define the properties for the new 5-stop gradient */
+/* C0, C1 are dark background colors, C2, C3, C4 are the glowing colors */
+@property --y-0 { syntax: '<percentage>'; inherits: false; initial-value: 49% }
+@property --x-0 { syntax: '<percentage>'; inherits: false; initial-value: 92% }
+@property --c-0 { syntax: '<color>'; inherits: false; initial-value: hsla(220, 41%, 10%, 1) }
+@property --s-start-0 { syntax: '<percentage>'; inherits: false; initial-value: 12% }
+@property --s-end-0 { syntax: '<percentage>'; inherits: false; initial-value: 39% }
+
+@property --x-1 { syntax: '<percentage>'; inherits: false; initial-value: 14% }
+@property --y-1 { syntax: '<percentage>'; inherits: false; initial-value: 63% }
+@property --s-start-1 { syntax: '<percentage>'; inherits: false; initial-value: 12% }
+@property --s-end-1 { syntax: '<percentage>'; inherits: false; initial-value: 51% }
+@property --c-1 { syntax: '<color>'; inherits: false; initial-value: hsla(220, 41%, 10%, 1) }
+
+@property --s-start-2 { syntax: '<percentage>'; inherits: false; initial-value: 12% }
+@property --s-end-2 { syntax: '<percentage>'; inherits: false; initial-value: 28% }
+@property --x-2 { syntax: '<percentage>'; inherits: false; initial-value: 94% }
+@property --y-2 { syntax: '<percentage>'; inherits: false; initial-value: 13% }
+@property --c-2 { syntax: '<color>'; inherits: false; initial-value: hsla(258.87, 81%, 37%, 0.15) }
+
+@property --s-start-3 { syntax: '<percentage>'; inherits: false; initial-value: 12% }
+@property --s-end-3 { syntax: '<percentage>'; inherits: false; initial-value: 38% }
+@property --y-3 { syntax: '<percentage>'; inherits: false; initial-value: 93% }
+@property --x-3 { syntax: '<percentage>'; inherits: false; initial-value: 72% }
+@property --c-3 { syntax: '<color>'; inherits: false; initial-value: hsla(266.03, 85%, 38%, 0.2) }
+
+@property --s-start-4 { syntax: '<percentage>'; inherits: false; initial-value: 12% }
+@property --s-end-4 { syntax: '<percentage>'; inherits: false; initial-value: 25% }
+@property --c-4 { syntax: '<color>'; inherits: false; initial-value: hsla(258.87, 74%, 52%, 0.2) }
+@property --x-4 { syntax: '<percentage>'; inherits: false; initial-value: 39% }
+@property --y-4 { syntax: '<percentage>'; inherits: false; initial-value: 8% }
+
+
+/* 2. The Keyframes for the smoother animation */
+@keyframes hero-gradient-animation {
+    0% {
+        --y-0: 49%; --x-0: 92%; --c-0: hsla(220, 41%, 10%, 1); --s-start-0: 12%; --s-end-0: 38.96%;
+        --x-1: 14%; --y-1: 63%; --s-start-1: 12%; --s-end-1: 51.15%; --c-1: hsla(220, 41%, 10%, 1);
+        --s-start-2: 12%; --s-end-2: 28.71%; --x-2: 94%; --y-2: 13%; --c-2: hsla(258.88, 81%, 37%, 0.15);
+        --s-start-3: 12%; --s-end-3: 38.72%; --y-3: 93%; --x-3: 72%; --c-3: hsla(266.03, 85%, 38%, 0.2);
+        --s-start-4: 12%; --s-end-4: 25.74%; --c-4: hsla(258.88, 74%, 52%, 0.2); --x-4: 39%; --y-4: 8%;
+    }
+
+    50% {
+        --y-0: 11%; --x-0: 27%; --c-0: hsla(220, 41%, 10%, 1); --s-start-0: 12%; --s-end-0: 58.04%;
+        --x-1: 59%; --y-1: 60%; --s-start-1: 12%; --s-end-1: 43.74%; --c-1: hsla(220, 41%, 10%, 1);
+        --s-start-2: 12%; --s-end-2: 42.09%; --x-2: 93%; --y-2: 68%; --c-2: hsla(258.82, 80%, 37%, 0.1);
+        --s-start-3: 3.46%; --s-end-3: 33.12%; --y-3: 47%; --x-3: 55%; --c-3: hsla(265.98, 83%, 38%, 0.05);
+        --s-start-4: 12%; --s-end-4: 60.27%; --c-4: hsla(258.88, 74%, 52%, 0.18); --x-4: 15%; --y-4: 69%;
+    }
+
+    100% {
+        --y-0: 88%; --x-0: 38%; --c-0: hsla(220, 41%, 10%, 1); --s-start-0: 12%; --s-end-0: 43.16%;
+        --x-1: 89%; --y-1: 19%; --s-start-1: 10.11%; --s-end-1: 40.60%; --c-1: hsla(220, 41%, 10%, 1);
+        --s-start-2: 12%; --s-end-2: 28.80%; --x-2: 14%; --y-2: 83%; --c-2: hsla(258.82, 80%, 37%, 0.2);
+        --s-start-3: 12%; --s-end-3: 34.23%; --y-3: 7%; --x-3: 47%; --c-3: hsla(265.98, 83%, 38%, 0.1);
+        --s-start-4: 12%; --s-end-4: 40.60%; --c-4: hsla(258.88, 74%, 52%, 0.1); --x-4: 94%; --y-4: 49%;
+    }
+}
+
+/* 3. The Utility Class with Noise and Blend Mode */
+.animate-mesh-gradient {
+    --y-0: 49%; --x-0: 92%; --c-0: hsla(220, 41%, 10%, 1);
+    --x-1: 14%; --y-1: 63%; --c-1: hsla(220, 41%, 10%, 1);
+    --x-2: 94%; --y-2: 13%; --c-2: hsla(258.88, 81%, 37%, 0.15);
+    --y-3: 93%; --x-3: 72%; --c-3: hsla(266.03, 85%, 38%, 0.2);
+    --c-4: hsla(258.88, 74%, 52%, 0.2); --x-4: 39%; --y-4: 8%;
+
+    background-color: hsla(220, 42%, 10%, 1);
+    
+    /* The noise texture is baked into the first background image */
+    background-image: 
+        radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)), 
+        radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)), 
+        radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)), 
+        radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3)), 
+        radial-gradient(circle at var(--x-4) var(--y-4), var(--c-4) var(--s-start-4), transparent var(--s-end-4));
+        
+    animation: hero-gradient-animation 10s linear infinite alternate;
+    
+    /* Overlay blends the noise (first image) with the gradients (the rest) */
+    background-blend-mode: overlay, normal, normal, normal, normal, normal;
+    
+    /* Ensure the background covers the full element */
+    background-size: cover;
+    background-position: center;
+}
