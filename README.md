@@ -8,7 +8,7 @@
 
 > **[🔴 View Live Demo](https://DevanshMistry890.github.io/edge-nlp-analyzer)**
 
-![Application Screenshot](path/to/your/screenshot.png)
+![Application Screenshot](/ss.png)
 *Real-time sentiment analysis running locally via WebAssembly.*
 
 ---
@@ -63,7 +63,7 @@ To clone and run this application on your local machine:
 
 ```bash
 # 1. Clone the repository
-git clone [https://github.com/](https://github.com/)DevanshMistry890/edge-nlp-analyzer.git
+git clone [[https://github.com/](https://github.com/)DevanshMistry890/edge-nlp-analyzer.git](https://github.com/DevanshMistry890/edge-nlp-analyzer.git)
 
 # 2. Navigate to directory
 cd edge-nlp-analyzer
