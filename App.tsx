@@ -25,7 +25,7 @@ function App() {
         </div>
 
         {/* Noise Texture */}
-        <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.15]"></div>
+        <div className="absolute inset-0 bg-[url('noise.svg')] opacity-[0.15]"></div>
       </div>
 
       <main className="relative z-10 w-full min-h-screen flex flex-col">

@@ -6,18 +6,12 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { WorkerMessageRequest, WorkerMessageResponse, TaskType } from '../types';
 import { getTaskConfig } from '../core/taskRegistry';
-
-interface AIState {
-  status: 'idle' | 'loading' | 'processing' | 'ready' | 'error';
-  progress: { file: string; percentage: number; status: string } | null;
-  result: any | null;
-  error: string | null;
-  metrics: { inferenceTime: number; loadTime?: number } | null;
-}
+import AIWorker from '../workers/ai.worker.ts?worker';
 
 export const useAIWorker = () => {
   const workerRef = useRef<Worker | null>(null);
-  const [aiState, setAiState] = useState<AIState>({
+
+  const [aiState, setAiState] = useState({
     status: 'idle',
     progress: null,
     result: null,
@@ -26,22 +20,8 @@ export const useAIWorker = () => {
   });
 
   useEffect(() => {
-    // Initialize Worker
     if (!workerRef.current) {
-      let workerUrl: URL;
-      try {
-        // Attempt to construct URL relative to the current module.
-        // This is the standard way for Vite/ESM to handle worker imports.
-        workerUrl = new URL('../workers/ai.worker.ts', import.meta.url);
-      } catch (e) {
-        // Fallback for environments where import.meta.url is invalid (e.g. blob URLs).
-        // Assumes the application is served with /workers/ at the root.
-        workerUrl = new URL('/workers/ai.worker.ts', window.location.origin);
-      }
-
-      workerRef.current = new Worker(workerUrl, {
-        type: 'module',
-      });
+      workerRef.current = new AIWorker();
 
       workerRef.current.onmessage = (event: MessageEvent<WorkerMessageResponse>) => {
         const { type, data, error, progress, metrics } = event.data;
@@ -49,20 +29,16 @@ export const useAIWorker = () => {
         switch (type) {
           case 'progress':
             if (progress) {
-                setAiState((prev) => ({
-                    ...prev,
-                    status: 'loading',
-                    progress: {
-                        file: progress.file,
-                        percentage: progress.progress,
-                        status: progress.status
-                    }
-                }));
+              setAiState((prev) => ({
+                ...prev,
+                status: 'loading',
+                progress: {
+                  file: progress.file,
+                  percentage: progress.progress,
+                  status: progress.status,
+                },
+              }));
             }
-            break;
-          
-          case 'init_complete':
-            // Model loaded, transitioning to processing immediately usually in this flow
             break;
 
           case 'result':
@@ -70,7 +46,7 @@ export const useAIWorker = () => {
               ...prev,
               status: 'ready',
               result: data,
-              metrics: metrics || null,
+              metrics: metrics ?? null,
               progress: null,
             }));
             break;
@@ -88,11 +64,8 @@ export const useAIWorker = () => {
     }
 
     return () => {
-      // Cleanup happens on unmount
-      if (workerRef.current) {
-        workerRef.current.terminate();
-        workerRef.current = null;
-      }
+      workerRef.current?.terminate();
+      workerRef.current = null;
     };
   }, []);
 
@@ -100,10 +73,9 @@ export const useAIWorker = () => {
     const config = getTaskConfig(taskId);
     if (!config || !workerRef.current) return;
 
-    // Reset previous result state but keep 'idle' logic clean
     setAiState((prev) => ({
       ...prev,
-      status: 'loading', // Start with loading/initializing
+      status: 'loading',
       result: null,
       error: null,
       metrics: null,
@@ -123,17 +95,13 @@ export const useAIWorker = () => {
 
   const reset = useCallback(() => {
     setAiState({
-        status: 'idle',
-        progress: null,
-        result: null,
-        error: null,
-        metrics: null
+      status: 'idle',
+      progress: null,
+      result: null,
+      error: null,
+      metrics: null,
     });
   }, []);
 
-  return {
-    ...aiState,
-    runTask,
-    reset,
-  };
+  return { ...aiState, runTask, reset };
 };

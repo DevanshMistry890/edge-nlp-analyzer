@@ -1,3 +1,5 @@
+/// <reference lib="webworker" />
+
 /*
 * Copyright (c) 2025 Devansh Vinodkumar Mistry
 * * This source code is licensed under the GNU General Public License v3.0 
