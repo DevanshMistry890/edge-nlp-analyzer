@@ -12,7 +12,7 @@ export interface TaskConfig {
   label: string;
   description: string;
   modelId: string;
-  pipelineTask: string; // The transformers.js pipeline task name
+  pipelineTask: PipelineType; // The transformers.js pipeline task name
   icon: string; // Lucide icon name
   quantized: boolean;
   themeColor: string; // For UI accents (e.g., 'cyan', 'purple', 'emerald')
