@@ -1,32 +1,12 @@
 import React from 'react';
 import Analyzer from './components/Analyzer';
+import './MeshGradient.css';
 
 function App() {
   return (
-    <div className="min-h-screen relative overflow-hidden bg-slate-950 text-slate-200">
-
-      {/* Premium Dark Mesh Gradient Background with Blue Theme */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        {/* Animated Orbs */}
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-900/50 rounded-full blur-[100px] mix-blend-screen animate-blob"></div>
-        <div className="absolute top-[20%] right-[-10%] w-[40%] h-[40%] bg-cyan-900/50 rounded-full blur-[100px] mix-blend-screen animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-[-10%] left-[30%] w-[50%] h-[50%] bg-indigo-900/50 rounded-full blur-[120px] mix-blend-screen animate-blob animation-delay-4000"></div>
-
-        {/* SVG Mesh Overlay */}
-        <div className="absolute inset-0 opacity-10">
-          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(6, 182, 212, 0.3)" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-        </div>
-
+    <div className="min-h-screen relative overflow-hidden bg-slate-950 text-slate-200 animate-mesh-gradient">
         {/* Noise Texture */}
         <div className="absolute inset-0 bg-[url('noise.svg')] opacity-[0.15]"></div>
-      </div>
 
       <main className="relative z-10 w-full min-h-screen flex flex-col">
         {/* Simple futuristic header strip */}
@@ -59,5 +39,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
